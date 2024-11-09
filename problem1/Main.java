@@ -1,17 +1,21 @@
 package problem1;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class Main {
     public static void main (String[] args) {
         // 프로그램이 실행되면, 보유도서 정보를 적당한 자료구조에 저장
-        ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("ISBN1234", "셜록홈즈", 20000, "코난도일", "그 누구도 뛰어넘지 못했던 추리 소설의 고전", "추리소설", "2018/10/08"));
-        books.add(new Book("ISBN2345", "도리안 그레이의 초상", 16000, "오스카 와일드", "예술을 위한 예술!", "고전소설", "2022/01/22"));
-        books.add(new Book("ISBN3456", "쥐덫", 27000, "애거서크리스티", "폭설 속에 갇힌 몽스웰 여관 - 네 명의 손님과 주인 부부, 그리고 한 명의 형사", "추리소설", "2019/06/10"));
-        
+        Map<String, Book> books = new HashMap<String, Book>();
+        Book book1 = new Book("ISBN1234", "셜록홈즈", 20000, "코난도일", "그 누구도 뛰어넘지 못했던 추리 소설의 고전", "추리소설", "2018/10/08");
+        Book book2 = new Book("ISBN2345", "도리안 그레이의 초상", 16000, "오스카 와일드", "예술을 위한 예술!", "고전소설", "2022/01/22");
+        Book book3 = new Book("ISBN3456", "쥐덫", 27000, "애거서크리스티", "폭설 속에 갇힌 몽스웰 여관 - 네 명의 손님과 주인 부부, 그리고 한 명의 형사", "추리소설", "2019/06/10");
+
+        books.put("ISBN1234", book1);
+        books.put("ISBN2345", book2);
+        books.put("ISBN3456", book3);
+
         // 사용자 정보(이름, 연락처)를 입력 받음 (1. 고객 정보 확인하기 또는 6. 영수증 표시하기에서 사용)
         Scanner sc = new Scanner(System.in);
         System.out.print("당신의 이름을 입력하세요 : ");
@@ -33,24 +37,53 @@ public class Main {
             System.out.println("******************************************");
             System.out.print("메뉴 번호를 선택해주세요 ");
             int menuNumber = sc.nextInt();
-            if (menuNumber == 7) break;
-            switch (menuNumber) {
-                case 1:
-                    System.out.println("현재 고객 정보 :");
-                    System.out.println(user.printInfo());
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    break;
-                case 6:
-                    break;
-            }
-            break;
+            if (menuNumber == 1) {
+                System.out.println("현재 고객 정보 :");
+                user.printInfo();
+            } else if (menuNumber == 2) {
+                user.getCart().printInfo();
+            } else if (menuNumber == 3) {
+                // 도서를 선택할 수 있도록 보유중인 도서목록을 출력
+                for (Map.Entry<String, Book> entry : books.entrySet()) {
+                    System.out.println(entry.getValue().toString());
+                }
+
+                System.out.print("장바구니에 추가할 도서의 ID를 입력하세요 : ");
+                String isbn = sc.next();
+                System.out.println("장바구니에 추가하겠습니까? Y | N");
+                String choice = sc.next();
+                // 대소문자 구분 없이 장바구니에 추가 (Y: yes, N: no)
+                if (choice.equalsIgnoreCase("y")) {
+                    user.getCart().addToCart(books.get(isbn));
+                }
+            } else if (menuNumber == 4) {
+                user.getCart().printInfo();
+                System.out.print("장바구니에서 삭제할 도서의 ID를 입력하세요 : ");
+                String isbn = sc.next();
+                user.getCart().deleteFromCart(books.get(isbn));
+            } else if (menuNumber == 5) {
+                // 5번의 경우 장바구니에 담긴 모든 아이템을 삭제함. 2번 메뉴를 통해 확인 가능
+                user.getCart().clearCart();
+                System.out.println("장바구니를 비웠습니다.");
+            } else if (menuNumber == 6) {
+                System.out.print("배송받을 분은 고객정보와 같습니까? ");
+                String choice = sc.next();
+                // 대소문자 구분 없이 장바구니에 추가 (Y: yes, N: no)
+                if (choice.equalsIgnoreCase("y")) {
+                    System.out.print("배송지를 입력해주세요 ");
+                    String address = sc.next();
+                    System.out.println("----------배송 받을 고객 정보----------");
+                    user.printInfo();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date d = new Date();
+                    String formattedDate = sdf.format(d);
+                    System.out.printf("배송지 : %s 발송일 : %s\n", address, formattedDate);
+                    user.getCart().printInfo();
+                }
+            } else if (menuNumber == 7) {
+                break;
+            };
+
         }
     }
 }

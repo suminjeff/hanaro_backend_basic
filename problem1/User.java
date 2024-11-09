@@ -26,12 +26,14 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public Cart getCart() { return cart; }
+
     @Override
     public String toString() {
         return String.format("User[name=%s, phoneNumber=%s]", name, phoneNumber);
     }
 
-    public String printInfo() {
-        return String.format("이름 %s 연락처 %s", name, phoneNumber);
+    public void printInfo() {
+        System.out.printf("이름 %s 연락처 %s\n", name, phoneNumber);
     }
 }

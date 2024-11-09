@@ -96,6 +96,6 @@ class Book {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date d = date.getTime();
         String formattedDate = sdf.format(d);
-        return String.format("Book[isbn=%s, title=%s, price=%s, author=%s, description=%s, genre=%s, date=%s]", isbn, title, price + "원", author, description, genre, formattedDate);
+        return String.format("%s | %s | %s | %s | %s | %s | %s", isbn, title, price + "원", author, description, genre, formattedDate);
     }
 }
