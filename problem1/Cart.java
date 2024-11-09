@@ -27,7 +27,6 @@ public class Cart {
         for (Map.Entry<Book, Integer> entry : cartInfo.entrySet()) {
             System.out.println(entry.getKey().getIsbn() + "\t|\t" + entry.getValue() + "\t|\t" + df.format((long) entry.getValue() * entry.getKey().getPrice())+"원");
         }
-
         System.out.println("---------------------------------------");
     }
 }
