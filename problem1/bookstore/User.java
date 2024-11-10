@@ -1,4 +1,4 @@
-package problem1;
+package problem1.bookstore;
 
 public class User {
     private String name;
@@ -8,22 +8,6 @@ public class User {
     public User(String name, String phoneNumber) {
         this.name = name; this.phoneNumber = phoneNumber;
         this.cart = new Cart();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public Cart getCart() { return cart; }

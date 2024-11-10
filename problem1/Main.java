@@ -1,5 +1,8 @@
 package problem1;
 
+import problem1.bookstore.Book;
+import problem1.bookstore.User;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 

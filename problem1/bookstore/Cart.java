@@ -1,4 +1,4 @@
-package problem1;
+package problem1.bookstore;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
