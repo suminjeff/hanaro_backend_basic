@@ -4,18 +4,24 @@ import java.text.DecimalFormat;
 
 // 계좌 추상 클래스
 public abstract class Account {
+    static DecimalFormat df = new DecimalFormat("#,###");
     protected int accountNumber;  // 계좌번호
     protected String accountName;  // 계좌명
     protected String owner;  // 소유자 이름
     protected int balance;
-    protected boolean transferable;
-    protected boolean withdrawable;
 
-    Account(int accountNumber, String accountName, String owner, int balance, boolean transferable, boolean withdrawable) {
+    Account(int accountNumber, String accountName, String owner, int balance) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.owner = owner;
         this.balance = balance;
+    }
+
+    public void deposit(int amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.printf("%s에 %s원이 입금되었습니다!\n", accountName, df.format(amount));
+        }
     }
 
     public int getAccountNumber() {
@@ -42,7 +48,7 @@ public abstract class Account {
         this.owner = owner;
     }
 
-    public double getBalance() {
+    public int getBalance() {
         return balance;
     }
 
@@ -50,35 +56,11 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public void deposit(int amount) {
-        balance += amount;
-    }
+    public abstract void withdraw(int amount) throws Exception;
 
-    public void withdraw(int amount) throws Exception {
-        if (withdrawable) {
-            if (balance >= amount) {
-                balance -= amount;
-            } else {
-                System.out.printf("잔액이 부족합니다! (잔액: %d원)\n", amount);
-            }
-        } else {
-            throw new Exception();
-        }
-    }
-
-    public void transfer(int amount, Account to) throws Exception {
-        if (transferable) {
-            if (balance >= amount) {
-                withdraw(amount);
-                to.deposit(amount);
-            }
-        } else {
-            throw new Exception();
-        }
-    }
+    public abstract void transfer(int amount, Account to) throws Exception;
 
     public String toString() {
-        DecimalFormat df = new DecimalFormat("#,###");
         return String.format("%s 통장 (계좌번호: %s, 잔액: %s원, 예금주: %s)", accountName, accountNumber, df.format(balance), owner);
     }
 }
