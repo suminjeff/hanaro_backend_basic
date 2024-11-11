@@ -8,7 +8,7 @@ public class TimeDepositAccount extends Account {
     private double interestRate;
 
     public TimeDepositAccount(int accountNumber, String owner, int balance, double interestRate, int depositTerm) {
-        super(accountNumber, owner, "정기예금", balance, false, false);
+        super(accountNumber, "정기예금", owner, balance, false, false);
         this.depositTerm = depositTerm; this.interestRate = interestRate;
     }
 

@@ -7,6 +7,14 @@ import java.util.Map;
 public class Cart {
     private Map<Book, Integer> cartInfo = new HashMap<Book, Integer>();
 
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (Map.Entry<Book, Integer> entry: cartInfo.entrySet()) {
+            totalPrice += entry.getKey().getPrice() * entry.getValue();
+        }
+        return totalPrice;
+    }
+
     public void addToCart(Book book) {
         cartInfo.put(book, cartInfo.get(book) == null ? 1 : cartInfo.get(book) + 1);
     }
@@ -28,5 +36,12 @@ public class Cart {
             System.out.println(entry.getKey().getIsbn() + "\t|\t" + entry.getValue() + "\t|\t" + df.format((long) entry.getValue() * entry.getKey().getPrice())+"원");
         }
         System.out.println("---------------------------------------");
+    }
+
+    public void printInvoice() {
+        printInfo();
+        DecimalFormat df = new DecimalFormat("#,###");
+        System.out.printf("\t\t\t\t\t총액 : %s\n", df.format(getTotalPrice()));
+
     }
 }

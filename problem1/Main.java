@@ -81,7 +81,7 @@ public class Main {
                     Date d = new Date();
                     String formattedDate = sdf.format(d);
                     System.out.printf("배송지 : %s 발송일 : %s\n", address, formattedDate);
-                    user.getCart().printInfo();
+                    user.getCart().printInvoice();
                 }
             } else if (menuNumber == 7) {
                 break;

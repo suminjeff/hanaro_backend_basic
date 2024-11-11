@@ -54,7 +54,7 @@ public abstract class Account {
         balance += amount;
     }
 
-    public void withdraw(int amount) {
+    public void withdraw(int amount) throws Exception {
         if (withdrawable) {
             if (balance >= amount) {
                 balance -= amount;
@@ -62,23 +62,23 @@ public abstract class Account {
                 System.out.printf("잔액이 부족합니다! (잔액: %d원)\n", amount);
             }
         } else {
-            System.out.println("출금할 수 없는 통장입니다.");
+            throw new Exception();
         }
     }
 
-    public void transfer(int amount, Account to) {
+    public void transfer(int amount, Account to) throws Exception {
         if (transferable) {
             if (balance >= amount) {
                 withdraw(amount);
                 to.deposit(amount);
             }
         } else {
-            System.out.println("이체할 수 없는 통장입니다.");
+            throw new Exception();
         }
     }
 
     public String toString() {
         DecimalFormat df = new DecimalFormat("#,###");
-        return String.format("%s (계좌번호: %s, 잔액: %s원, 예금주: %s)", accountName, accountNumber, df.format(balance), owner);
+        return String.format("%s 통장 (계좌번호: %s, 잔액: %s원, 예금주: %s)", accountName, accountNumber, df.format(balance), owner);
     }
 }
