@@ -4,7 +4,6 @@ package problem3.accounts;
 // 정기 예금
 public class TimeDepositAccount extends Account {
     private int depositTerm;  // 예치 기간
-    private int depositMonths = 0;  // 현재까지 납부 개월 수
     private double interestRate;
 
     public TimeDepositAccount(int accountNumber, String owner, int balance, int depositTerm) {
@@ -14,15 +13,24 @@ public class TimeDepositAccount extends Account {
     }
 
     public double calculateInterestRate(int month) {
-        if (month < 1) return 0.0;
-        else if (month < 3) return 3.0;
-        else if (month < 6) return 3.35;
-        else if (month < 9) return 3.4;
-        else if (month < 12) return 3.35;
-        else if (month < 24) return 3.35;
-        else if (month < 36) return 2.9;
-        else if (month < 48) return 2.9;
-        else return 2.9;
+        if (month >= 48) return 2.9;
+        else if (month >= 36) return 2.9;
+        else if (month >= 24) return 2.9;
+        else if (month >= 12) return 3.35;
+        else if (month >= 9) return 3.35;
+        else if (month >= 6) return 3.4;
+        else if (month >= 3) return 3.35;
+        else if (month >= 1) return 3.0;
+        else return 0.0;
+//        if (month < 1) return 0.0;
+//        else if (month < 3) return 3.0;
+//        else if (month < 6) return 3.35;
+//        else if (month < 9) return 3.4;
+//        else if (month < 12) return 3.35;
+//        else if (month < 24) return 3.35;
+//        else if (month < 36) return 2.9;
+//        else if (month < 48) return 2.9;
+//        else return 2.9;
     }
 
     public double calculateDepositProceeds(int month) {
@@ -37,27 +45,12 @@ public class TimeDepositAccount extends Account {
         this.depositTerm = depositTerm;
     }
 
-    public int getDepositMonths() {
-        return depositMonths;
-    }
-
-    public void setDepositMonths(int depositMonths) {
-        this.depositMonths = depositMonths;
-    }
-
     public double getInterestRate() {
         return interestRate;
     }
 
     public void setInterestRate(int interestRate) {
         this.interestRate = interestRate;
-    }
-
-    @Override
-    public void deposit(int amount) {
-        setBalance(getBalance() + amount);
-        setDepositMonths(getDepositMonths() + 1);
-        System.out.printf("%s에 %s원이 입금되었습니다!\n", this.getAccountName(), df.format(amount));
     }
 
     @Override

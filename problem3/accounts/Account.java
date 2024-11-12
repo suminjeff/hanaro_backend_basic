@@ -3,7 +3,7 @@ package problem3.accounts;
 import java.text.DecimalFormat;
 
 // 계좌 추상 클래스
-public abstract class Account {
+public abstract class Account implements Transferable, Withdrawable {
     static DecimalFormat df = new DecimalFormat("#,###");
     protected int accountNumber;  // 계좌번호
     protected String accountName;  // 계좌명
@@ -55,10 +55,6 @@ public abstract class Account {
     public void setBalance(int balance) {
         this.balance = balance;
     }
-
-    public abstract void withdraw(int amount) throws Exception;
-
-    public abstract void transfer(int amount, Account to) throws Exception;
 
     public String toString() {
         return String.format("%s 통장 (계좌번호: %s, 잔액: %s원, 예금주: %s)", accountName, accountNumber, df.format(balance), owner);

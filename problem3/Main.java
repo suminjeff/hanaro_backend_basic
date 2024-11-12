@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         // 길동이의 계좌
         Map<Integer, Account> accounts = new LinkedHashMap<Integer, Account>();
-        CheckingAccount checkingAccount = new CheckingAccount(1, "홍길동", 0, 0);
+        CheckingAccount checkingAccount = new CheckingAccount(1, "홍길동", 0);
         TimeDepositAccount timeDepositAccount = new TimeDepositAccount(2, "홍길동", 50_000_000, 0);
         OverdraftAccount overdraftAccount = new OverdraftAccount(3, "홍길동", 0);
 
@@ -49,7 +49,7 @@ public class Main {
                 if (account == null) continue;
                 System.out.println(account);
                 A: while (true) {
-                    if (account instanceof TimeDepositAccount && ((TimeDepositAccount) account).getDepositMonths() == ((TimeDepositAccount) account).getDepositTerm()) {
+                    if (account instanceof TimeDepositAccount) {
                         System.out.print("> 정기예금이 만기되었습니다. (+: 만기처리, -: 출금, T: 이체, I: 정보) ");
                     } else {
                         System.out.print("> 원하시는 업무는? (+: 입금, -: 출금, T: 이체, I: 정보) ");

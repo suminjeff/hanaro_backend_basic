@@ -20,7 +20,6 @@ public class PermanentWorker extends Worker {
     @Override
     public void showSalaryInfo(String name) {
         DecimalFormat df = new DecimalFormat("#,###");
-        System.out.printf("사원 %s의 급여는 %s원\n", super.name, df.format(getPay()));
+        System.out.printf("사원 %s의 급여는 %s원\n", this.name, df.format(getPay()));
     }
-
 }
