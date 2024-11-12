@@ -70,7 +70,7 @@ public class Main {
                                 } else {
                                     if (monthChoice.matches("\\d+")) {
                                         int month = Integer.parseInt(monthChoice);
-                                        System.out.printf("%d개월(적용금리 %.1f%%)로 만기 처리하시겠어요? (y/n) ", month, ((TimeDepositAccount) account).calculateInterestRate(month));
+                                        System.out.printf("%d개월(적용금리 %s%%)로 만기 처리하시겠어요? (y/n) ", month, ((TimeDepositAccount) account).calculateInterestRate(month));
                                         String dueChoice = sc.nextLine();
                                         if (dueChoice.isBlank() || dueChoice.equals("0")) {
                                             break;
@@ -95,7 +95,6 @@ public class Main {
                                                 }
                                             }
                                         }
-
                                     }
                                 }
                             }
