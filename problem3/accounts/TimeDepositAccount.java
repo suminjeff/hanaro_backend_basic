@@ -22,19 +22,10 @@ public class TimeDepositAccount extends Account {
         else if (month >= 3) return 3.35;
         else if (month >= 1) return 3.0;
         else return 0.0;
-//        if (month < 1) return 0.0;
-//        else if (month < 3) return 3.0;
-//        else if (month < 6) return 3.35;
-//        else if (month < 9) return 3.4;
-//        else if (month < 12) return 3.35;
-//        else if (month < 24) return 3.35;
-//        else if (month < 36) return 2.9;
-//        else if (month < 48) return 2.9;
-//        else return 2.9;
     }
 
     public double calculateDepositProceeds(int month) {
-        return this.getBalance() * (1 + calculateInterestRate(month) * 0.01);
+        return Math.round(this.getBalance() * (1 + calculateInterestRate(month) * 0.01));
     }
 
     public int getDepositTerm() {
