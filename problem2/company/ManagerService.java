@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ManagerService {
     private List<Worker> workers;
+
     public ManagerService() {
         this.workers = new ArrayList<Worker>();
     }
@@ -20,7 +21,7 @@ public class ManagerService {
     // 모든 사원의 정보와 급여 출력
     public void showAllSalaryInfo() {
         for (int i = 0; i < workers.size(); i++) {
-            workers.get(i).showSalaryInfo("name");
+            workers.get(i).showSalaryInfo(workers.get(i).name);
         }
     }
 
@@ -35,11 +36,10 @@ public class ManagerService {
 
     // 급여 총액 출력
     public void showTotalSalary() {
-        DecimalFormat df = new DecimalFormat("#,###");
         int totalSalary = 0;
         for (int i = 0; i < workers.size(); i++) {
             totalSalary += workers.get(i).getPay();
         }
-        System.out.printf("모든 사원들의 급여 총액은 : %s원\n", df.format(totalSalary));
+        System.out.printf("모든 사원들의 급여 총액은 : %,d원\n", totalSalary);
     }
 }

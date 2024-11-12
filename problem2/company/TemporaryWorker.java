@@ -21,7 +21,6 @@ public class TemporaryWorker extends Worker {
 
     @Override
     public void showSalaryInfo(String name) {
-        DecimalFormat df = new DecimalFormat("#,###");
-        System.out.printf("사원 %s의 근무시간은 %d시간, 시간 수당은 %s원 급여는 %s원\n", this.name, workTime, df.format(payPerHour), df.format(getPay()));
+        System.out.printf("사원 %s의 근무시간은 %d시간, 시간 수당은 %,d원 급여는 %,d원\n", this.name, workTime, payPerHour, getPay());
     }
 }

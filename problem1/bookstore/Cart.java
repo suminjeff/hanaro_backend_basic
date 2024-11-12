@@ -41,7 +41,7 @@ public class Cart {
     public void printInvoice() {
         printInfo();
         DecimalFormat df = new DecimalFormat("#,###");
-        System.out.printf("\t\t\t\t\t총액 : %s\n", df.format(getTotalPrice()));
+        System.out.printf("\t\t\t\t\t총액 : %s원\n", df.format(getTotalPrice()));
 
     }
 }

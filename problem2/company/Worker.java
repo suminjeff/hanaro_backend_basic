@@ -2,6 +2,7 @@ package problem2.company;
 
 
 abstract class Worker implements Employee {
+
     protected String name;
 
     public Worker(String name) {

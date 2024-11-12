@@ -13,7 +13,7 @@ public class Main {
     static DecimalFormat df = new DecimalFormat("#,###");
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         // 길동이의 계좌
         Map<Integer, Account> accounts = new LinkedHashMap<Integer, Account>();
         CheckingAccount checkingAccount = new CheckingAccount(1, "홍길동", 0);
@@ -127,8 +127,8 @@ public class Main {
                                 break;
                             }
                             if (amountChoice.matches("\\d+")) {
-                                int amount = Integer.parseInt(amountChoice);
                                 try {
+                                    int amount = Integer.parseInt(amountChoice);
                                     account.withdraw(amount);
                                     System.out.printf("%s 통장에서 %s원이 출금되었습니다.\n", account.getAccountName(), df.format(amount));
                                     System.out.printf("%s 통장의 잔액은 %s원입니다.\n", account.getAccountName(), df.format(account.getBalance()));
@@ -165,8 +165,8 @@ public class Main {
                                             break;
                                         }
                                         if (amountChoice.matches("\\d+")) {
-                                            int amount = Integer.parseInt(amountChoice);
                                             try {
+                                                int amount = Integer.parseInt(amountChoice);
                                                 account.transfer(amount, to);
                                                 System.out.printf("%s 통장에 %s원이 입금되었습니다.\n", to.getAccountName(), df.format(amount));
                                                 System.out.printf("%s 통장의 잔액은 %s원입니다.\n", account.getAccountName(), df.format(account.getBalance()));

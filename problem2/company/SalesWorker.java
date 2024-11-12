@@ -21,8 +21,7 @@ public class SalesWorker extends PermanentWorker {
 
     @Override
     public void showSalaryInfo(String name) {
-        DecimalFormat df = new DecimalFormat("#,###");
-        System.out.printf("사원 %s의 급여는 월급 %s원, 수당 %s원을 합한 총액 %s원\n", this.name, df.format(super.getPay()), df.format((int) (salesAmount * bonusRatio)), df.format(getPay()));
+        System.out.printf("사원 %s의 급여는 월급 %,d원, 수당 %,d원을 합한 총액 %,d원\n", this.name, super.getPay(), (int) (salesAmount * bonusRatio), getPay());
     }
 
 }
